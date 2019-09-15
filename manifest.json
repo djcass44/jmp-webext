@@ -1,7 +1,7 @@
 {
-  "name": "Getting Started Example",
-  "version": "1.0",
-  "description": "Build an Extension!",
+  "name": "JMP",
+  "version": "0.0",
+  "description": "JMP web helper",
   "permissions": [
     "activeTab",
     "storage",
@@ -9,7 +9,8 @@
   ],
   "__firefox__browser_specific_settings": {
     "gecko": {
-      "id": "addon@example.com"
+      "id": "jmp-web@castive.dev",
+      "strict_min_version": "57"
     }
   },
   "__chrome__options_page": "options.html",
@@ -35,19 +36,19 @@
   ],
   "browser_action": {
     "default_icon": {
-      "16": "logo/get_started16.png",
-      "32": "logo/get_started32.png",
-      "48": "logo/get_started48.png",
-      "128": "logo/get_started128.png"
+      "16": "logo/favicon.png",
+      "32": "logo/favicon.png",
+      "48": "logo/favicon.png",
+      "128": "logo/favicon.png"
     },
-    "default_title": "Getting Started Example",
+    "default_title": "JMP",
     "default_popup": "popup.html"
   },
   "icons": {
-    "16": "logo/get_started16.png",
-    "32": "logo/get_started32.png",
-    "48": "logo/get_started48.png",
-    "128": "logo/get_started128.png"
+    "16": "logo/favicon.png",
+    "32": "logo/favicon.png",
+    "48": "logo/favicon.png",
+    "128": "logo/favicon.png"
   },
   "manifest_version": 2
 }
