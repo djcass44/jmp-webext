@@ -3,9 +3,7 @@
   "version": "0.0",
   "description": "JMP web helper",
   "permissions": [
-    "activeTab",
-    "storage",
-    "http://127.0.0.1/"
+    "storage"
   ],
   "__firefox__browser_specific_settings": {
     "gecko": {
@@ -23,16 +21,6 @@
       "/static/js/background.js"
     ]
   },
-  "content_scripts": [
-    {
-      "matches": [
-        "*://*/*"
-      ],
-      "js": [
-        "/static/js/content-script-example.js"
-      ]
-    }
-  ],
   "browser_action": {
     "default_icon": {
       "16": "logo/favicon.png",

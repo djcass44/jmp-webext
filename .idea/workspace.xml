@@ -2,19 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="30dd2ea8-147c-4cd8-9130-57235db7b327" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/favicon.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/logo/get_started128.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/logo/get_started16.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/logo/get_started32.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/logo/get_started48.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppOptions.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppOptions.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppPopup.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppPopup.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AppPopup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppPopup.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/options.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/options.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/popup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/popup.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -83,7 +78,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1568521183012</updated>
-      <workItem from="1568521184079" duration="578000" />
+      <workItem from="1568521184079" duration="3324000" />
     </task>
     <task id="LOCAL-00001" summary="Initial manifest conversion">
       <created>1568521438950</created>
@@ -92,7 +87,14 @@
       <option name="project" value="LOCAL" />
       <updated>1568521438951</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Converted to functional components">
+      <created>1568521823270</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1568521823270</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -111,6 +113,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial manifest conversion" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial manifest conversion" />
+    <MESSAGE value="Converted to functional components" />
+    <option name="LAST_COMMIT_MESSAGE" value="Converted to functional components" />
   </component>
 </project>
