@@ -15,7 +15,7 @@
   "__firefox__browser_specific_settings": {
     "gecko": {
       "id": "jmp-web@castive.dev",
-      "strict_min_version": "57"
+	    "strict_min_version": "57.0"
     }
   },
   "__chrome__options_page": "options.html",
