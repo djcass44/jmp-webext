@@ -1,9 +1,13 @@
 {
   "name": "JMP",
-  "version": "0.0",
+  "version": "0.1",
   "description": "JMP web helper",
   "permissions": [
-    "storage"
+    "storage",
+    "https://jmp.castive.dev/*"
+  ],
+  "optional_permissions": [
+    "<all_urls>"
   ],
   "__firefox__browser_specific_settings": {
     "gecko": {

@@ -43,7 +43,7 @@ const Preview = ({url}) => {
 			return <Text color="danger">{error}</Text>;
 		if (status != null)
 			return getHealth(status).map(i => (
-				<Tooltip content={i.key}>
+				<Tooltip key={i.key} content={i.key}>
 					<Icon margin={2} icon={i.value === true ? "tick-circle" : "ban-circle"}
 					      color={i.value === true ? "success" : "danger"}/>
 				</Tooltip>

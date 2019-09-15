@@ -24,17 +24,39 @@ export default () => {
 
 	// on-start hook
 	useEffect(() => {
+		// load the url from browser storage
 		initUrl().then();
 	}, []);
 
 	const onSubmit = () => {
 		setLoading(true);
-		browser.storage.sync.set({jmp: {url: editUrl}}).then(() => {
-			setLoading(false);
-			console.log(`saved url: ${editUrl}`);
-		}).catch(err => {
-			setLoading(false);
-			console.error(err);
+		let gotPermissions = false;
+		// this spaghetti is required because firefox needs a user to trigger it
+		// see here: https://stackoverflow.com/a/47729896
+		const permissions = {
+			origins: [`${editUrl}${!editUrl.endsWith("/") && "/"}*`]
+		};
+		const oldPermissions = {
+			// revoke old url
+			origins: [`${url}${!url.endsWith("/") && "/"}*`]
+		};
+		browser.permissions.request(permissions).then(r2 => {
+			gotPermissions = r2;
+			console.log(`Got permissions: ${r2}`);
+			if (gotPermissions) {
+				browser.permissions.remove(oldPermissions).then();
+				// reload the new url
+				browser.storage.sync.set({jmp: {url: editUrl}}).then(() => {
+					setLoading(false);
+					console.log(`saved url: ${editUrl}`);
+					initUrl().then();
+				}).catch(err => {
+					setLoading(false);
+					console.error(err);
+				});
+			} else {
+				setLoading(false);
+			}
 		});
 	};
 	const onChange = e => {
@@ -57,11 +79,12 @@ export default () => {
 					validationMessage={valid === false ? "Must be a valid url" : null}
 					isInvalid={!valid}
 					padding={12}
+					disabled={loading}
 				/>
 			</Card>
 			<Pane paddingTop={8} paddingLeft={4} display="flex">
 				<Button appearance="minimal" onClick={() => setEditUrl(url)}>Reset</Button>
-				<Button appearance="primary" disabled={valid === false} isLoading={loading}
+				<Button appearance="primary" disabled={valid === false || (editUrl === url)} isLoading={loading}
 				        onClick={() => onSubmit()}>Save</Button>
 			</Pane>
 		</Pane>
