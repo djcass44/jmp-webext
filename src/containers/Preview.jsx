@@ -15,16 +15,18 @@
  */
 
 import React, {useEffect, useState} from "react";
-import {Code, Icon, Spinner, Table, Tooltip} from "evergreen-ui";
+import {Code, Icon, Spinner, Table, Text, Tooltip} from "evergreen-ui";
 import getHealth from "../util/getHealth";
+import PropTypes from "prop-types";
 
-export default () => {
+const Preview = ({url}) => {
 	const [status, setStatus] = useState(null);
 	const [error, setError] = useState(null);
 
 	useEffect(() => {
+		if (url == null) return;
 		setError(null);
-		fetch("http://localhost:7000/api/v3/health").then(r => {
+		fetch(`${url}/api/v3/health`).then(r => {
 			if (!r.ok)
 				throw new Error(`HTTP error, status = ${r.status}`);
 			return r.json();
@@ -32,13 +34,12 @@ export default () => {
 			setStatus(data);
 		}).catch(err => {
 			setError(err.message);
-			console.log(err);
 		});
-	}, []);
+	}, [url]);
 
 	const getStatus = () => {
 		if (error != null)
-			return error;
+			return <Text color="danger">{error}</Text>;
 		if (status != null)
 			return getHealth(status).map(i => (
 				<Tooltip content={i.key}>
@@ -52,7 +53,7 @@ export default () => {
 	const rows = [
 		{
 			key: "URL",
-			value: <Code>"https://jmp.castive.dev"</Code>
+			value: <Code>{url}</Code>
 		},
 		{
 			key: "App status",
@@ -71,4 +72,11 @@ export default () => {
 			</Table.Body>
 		</Table>
 	);
-}
+};
+Preview.propTypes = {
+	url: PropTypes.string
+};
+Preview.defaultProps = {
+	url: null
+};
+export default Preview;

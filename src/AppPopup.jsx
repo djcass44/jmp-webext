@@ -14,17 +14,32 @@
  *    limitations under the License.
  */
 
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import './AppPopup.css';
 import {Card, Heading, IconButton, Pane, Tooltip} from "evergreen-ui";
 import Preview from "./containers/Preview";
+import {DEFAULT_URL} from "./util/env";
 
 export default () => {
+	const [url, setUrl] = useState(DEFAULT_URL);
+
+	const initUrl = async () => {
+		// attempt to load the stored JMP url (or default to env)
+		const data = await browser.storage.sync.get('jmp-url');
+		console.log(data);
+		setUrl(data.url || DEFAULT_URL);
+	};
+
+	// on-start hook
+	useEffect(() => {
+		initUrl().then();
+	}, []);
+
 	return (
 		<Pane padding={12}>
 			<Heading size={700} padding={8}>JMP</Heading>
 			<Card elevation={1}>
-				<Preview/>
+				<Preview url={url}/>
 			</Card>
 			<Pane paddingTop={8} paddingLeft={4} display="flex">
 				<Tooltip content="Open JMP">
@@ -33,7 +48,7 @@ export default () => {
 						icon="document-open"
 						is="a"
 						target="_blank" rel="noopener noreferrer"
-						href="https://jmp.castive.dev"
+						href={url}
 					/>
 				</Tooltip>
 			</Pane>
