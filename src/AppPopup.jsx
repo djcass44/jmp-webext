@@ -1,54 +1,38 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import './AppPopup.css';
 
-export default class AppPopup extends React.Component {
-  constructor(props) {
-    super(props);
+export default () => {
+	const [color, setColor] = useState("");
 
-    this.state = {
-      color: ''
-    };
-  }
+	useEffect(() => {
+		initColor().then();
+	}, []);
 
-  componentDidMount() {
-    this.initColor();
-  }
+	const initColor = async () => {
+		const data = await browser.storage.sync.get('color');
+		setColor(data.color);
+	};
 
-  initColor = async () => {
-    const data = await browser.storage.sync.get('color');
-
-    this.setState({
-      color: data.color
-    });
-  }
-
-  handleButtonClick = async () => {
-    const { color } = this.state;
-    const tabs = await browser.tabs.query({
-      active: true,
-      currentWindow: true
-    });
-
-    browser.tabs.executeScript(
-      tabs[0].id,
-      {
-        code: `document.body.style.backgroundColor = "${color}";`
-      }
-    );
-  }
-
-  render() {
-    const { color } = this.state;
-
-    return (
-      <div className="App">
-        <button
-          onClick={this.handleButtonClick}
-          style={{
-            backgroundColor: color
-          }}
-        />
-      </div>
-    )
-  }
+	const handleButtonClick = async () => {
+		const tabs = await browser.tabs.query({
+			active: true,
+			currentWindow: true
+		});
+		browser.tabs.executeScript(
+			tabs[0].id,
+			{
+				code: `document.body.style.backgroundColor = "${color}";`
+			}
+		);
+	};
+	return (
+		<div className="App">
+			<button
+				onClick={handleButtonClick}
+				style={{
+					backgroundColor: color
+				}}
+			/>
+		</div>
+	);
 }
