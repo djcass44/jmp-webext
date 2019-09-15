@@ -2,20 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="30dd2ea8-147c-4cd8-9130-57235db7b327" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/containers/Edit.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/containers/Preview.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppPopup.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppPopup.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AppPopup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppPopup.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/options.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/options.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -78,7 +81,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1568521183012</updated>
-      <workItem from="1568521184079" duration="3324000" />
+      <workItem from="1568521184079" duration="3813000" />
     </task>
     <task id="LOCAL-00001" summary="Initial manifest conversion">
       <created>1568521438950</created>
@@ -94,7 +97,14 @@
       <option name="project" value="LOCAL" />
       <updated>1568521823270</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Added initial popup">
+      <created>1568524561630</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1568524561630</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -114,6 +124,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial manifest conversion" />
     <MESSAGE value="Converted to functional components" />
-    <option name="LAST_COMMIT_MESSAGE" value="Converted to functional components" />
+    <MESSAGE value="Added initial popup" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added initial popup" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
 </project>
