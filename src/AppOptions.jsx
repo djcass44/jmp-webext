@@ -7,7 +7,7 @@ const urlRegex = new RegExp("https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256
 
 export default () => {
 	// initial url loaded from storage
-	const [url, setUrl] = useState(DEFAULT_URL);
+	const [url, setUrl] = useState(null);
 	// unsaved url being modified by the user
 	const [editUrl, setEditUrl] = React.useState(url || "");
 	const [valid, setValid] = useState(true);

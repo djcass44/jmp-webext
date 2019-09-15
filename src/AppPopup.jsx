@@ -21,7 +21,7 @@ import Preview from "./containers/Preview";
 import {DEFAULT_URL} from "./util/env";
 
 export default () => {
-	const [url, setUrl] = useState(DEFAULT_URL);
+	const [url, setUrl] = useState(null);
 
 	const initUrl = async () => {
 		// attempt to load the stored JMP url (or default to env)

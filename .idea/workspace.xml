@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="30dd2ea8-147c-4cd8-9130-57235db7b327" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/containers/Edit.jsx" afterDir="false" />
+    <list default="true" id="30dd2ea8-147c-4cd8-9130-57235db7b327" name="Default Changelist" comment="Disabled default url">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppOptions.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppOptions.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AppOptions.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppOptions.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AppPopup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppPopup.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/Preview.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Preview.jsx" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -83,7 +82,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1568521183012</updated>
-      <workItem from="1568521184079" duration="7683000" />
+      <workItem from="1568521184079" duration="8055000" />
     </task>
     <task id="LOCAL-00001" summary="Initial manifest conversion">
       <created>1568521438950</created>
@@ -127,7 +126,14 @@
       <option name="project" value="LOCAL" />
       <updated>1568526983527</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Added storage of JMP url&#10;Added ability to modify JMP url">
+      <created>1568528944685</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1568528944685</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -151,7 +157,8 @@
     <MESSAGE value="Separated table into own component" />
     <MESSAGE value="Added JMP api health query&#10;Added license" />
     <MESSAGE value="Added dynamic loading of JMP url" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added dynamic loading of JMP url" />
+    <MESSAGE value="Added storage of JMP url&#10;Added ability to modify JMP url" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added storage of JMP url&#10;Added ability to modify JMP url" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>

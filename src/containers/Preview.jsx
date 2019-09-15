@@ -25,6 +25,7 @@ const Preview = ({url}) => {
 
 	useEffect(() => {
 		if (url == null) return;
+		console.log(`Targeting url: ${url}`);
 		setError(null);
 		fetch(`${url}/api/v3/health`).then(r => {
 			if (!r.ok)
