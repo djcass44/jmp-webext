@@ -25,9 +25,10 @@ export default () => {
 
 	const initUrl = async () => {
 		// attempt to load the stored JMP url (or default to env)
-		const data = await browser.storage.sync.get('jmp-url');
-		console.log(data);
-		setUrl(data.url || DEFAULT_URL);
+		const data = await browser.storage.sync.get('jmp');
+		const storedUrl = (data.jmp && data.jmp.url) || DEFAULT_URL;
+		console.log(`Retrieved url: ${storedUrl}`);
+		setUrl(storedUrl);
 	};
 
 	// on-start hook
