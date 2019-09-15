@@ -2,10 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="30dd2ea8-147c-4cd8-9130-57235db7b327" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/copyright/apv2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LICENSE" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/containers/Edit.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/containers/Preview.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/util/getHealth.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AppPopup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppPopup.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/Preview.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Preview.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/popup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/popup.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,6 +33,7 @@
   <component name="ProjectId" id="1QrGDmcpc27YoPFFDmbwpG7oC2a" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SONARLINT_PRECOMMIT_ANALYSIS" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/public" />
@@ -36,7 +44,7 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
+    <property name="settings.editor.selected.configurable" value="copyright" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -81,7 +89,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1568521183012</updated>
-      <workItem from="1568521184079" duration="3813000" />
+      <workItem from="1568521184079" duration="4927000" />
     </task>
     <task id="LOCAL-00001" summary="Initial manifest conversion">
       <created>1568521438950</created>
@@ -104,7 +112,14 @@
       <option name="project" value="LOCAL" />
       <updated>1568524561630</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Separated table into own component">
+      <created>1568525111973</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1568525111973</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -125,7 +140,8 @@
     <MESSAGE value="Initial manifest conversion" />
     <MESSAGE value="Converted to functional components" />
     <MESSAGE value="Added initial popup" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added initial popup" />
+    <MESSAGE value="Separated table into own component" />
+    <option name="LAST_COMMIT_MESSAGE" value="Separated table into own component" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
