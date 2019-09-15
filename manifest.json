@@ -6,6 +6,9 @@
     "storage",
     "https://jmp.castive.dev/*"
   ],
+  "omnibox": {
+    "keyword": "jmp"
+  },
   "optional_permissions": [
     "<all_urls>"
   ],
