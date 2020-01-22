@@ -18,6 +18,11 @@
 export default health => {
 	const results = [];
 	if (health == null) return results;
+	// check for springboot non-auth actuator health
+	if (health.status != null) {
+		results.push({key: "Overall health", value: health.status});
+		return results;
+	}
 	results.push({key: "HTTP status code", value: health.code === 200});
 	results.push({key: "Content server", value: health.http === "OK"});
 	// database can be null (if not admin)

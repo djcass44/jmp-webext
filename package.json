@@ -4,10 +4,10 @@
   "private": true,
   "dependencies": {
     "browser-extension-react-scripts": "1.0.1-alpha.5",
-    "evergreen-ui": "^4.18.3",
-	  "prop-types": "^15.7.2",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
+    "evergreen-ui": "^4.22.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
     "typeface-roboto": "0.0.75"
   },
   "scripts": {

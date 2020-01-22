@@ -27,7 +27,7 @@ const Preview = ({url}) => {
 		if (url == null) return;
 		console.log(`Targeting url: ${url}`);
 		setError(null);
-		fetch(`${url}/api/v3/health`).then(r => {
+		fetch(`${url}/api/actuator/health`).then(r => {
 			if (!r.ok)
 				throw new Error(`HTTP error, status = ${r.status}`);
 			return r.json();
@@ -44,8 +44,8 @@ const Preview = ({url}) => {
 		if (status != null)
 			return getHealth(status).map(i => (
 				<Tooltip key={i.key} content={i.key}>
-					<Icon margin={2} icon={i.value === true ? "tick-circle" : "ban-circle"}
-					      color={i.value === true ? "success" : "danger"}/>
+					<Icon margin={2} icon={i.value === "UP" ? "tick-circle" : "ban-circle"}
+					      color={i.value === "UP" ? "success" : "danger"}/>
 				</Tooltip>
 			));
 		return <Spinner size={16}/>;
