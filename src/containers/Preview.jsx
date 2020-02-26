@@ -15,63 +15,80 @@
  */
 
 import React, {useEffect, useState} from "react";
-import {Code, Icon, Spinner, Table, Text, Tooltip} from "evergreen-ui";
-import getHealth from "../util/getHealth";
+import {Alert, Pane, Spinner, Table, Text} from "evergreen-ui";
 import PropTypes from "prop-types";
 
 const Preview = ({url}) => {
-	const [status, setStatus] = useState(null);
+	const [items, setItems] = useState({});
+	const [value, setValue] = useState("");
 	const [error, setError] = useState(null);
+	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
-		if (url == null) return;
-		console.log(`Targeting url: ${url}`);
-		setError(null);
-		fetch(`${url}/api/actuator/health`).then(r => {
+		if(url != null)
+			getAll(value);
+	}, [value, url]);
+
+	const getAll = (query) => {
+		setLoading(true);
+		fetch(`${url}/api/v2/jump?query=${query}`).then(r => {
 			if (!r.ok)
-				throw new Error(`HTTP error, status = ${r.status}`);
+				throw new Error(r.status || "An error occurred");
 			return r.json();
 		}).then(data => {
-			setStatus(data);
+			const temp = {};
+			// convert the pages into usable data
+			data.content.forEach(i => {
+				temp[i.name] = {
+					url: i.location,
+					id: i.id,
+					name: i.name
+				};
+			});
+			setItems(temp);
+			// clear any existing error
+			setError(null);
+			setLoading(false);
 		}).catch(err => {
+			console.error(err);
 			setError(err.message);
+			setLoading(false);
 		});
-	}, [url]);
-
-	const getStatus = () => {
-		if (error != null)
-			return <Text color="danger">{error}</Text>;
-		if (status != null)
-			return getHealth(status).map(i => (
-				<Tooltip key={i.key} content={i.key}>
-					<Icon margin={2} icon={i.value === "UP" ? "tick-circle" : "ban-circle"}
-					      color={i.value === "UP" ? "success" : "danger"}/>
-				</Tooltip>
-			));
-		return <Spinner size={16}/>;
 	};
 
-	const rows = [
-		{
-			key: "URL",
-			value: <Code>{url}</Code>
-		},
-		{
-			key: "App status",
-			value: getStatus()
-		}
-	];
+	const onOpen = (target) => {
+		// open a new tab
+		browser.tabs.create({
+			url: `${url}/jmp?id=${target.id}&query=${target.name}`,
+			active: true
+		}).catch(err => console.error(err));
+	};
+
 	return (
-		<Table minWidth={350}>
-			<Table.Body>
-				{rows.map(r => (
-					<Table.Row key={r.key}>
-						<Table.TextCell maxWidth={90}>{r.key}</Table.TextCell>
-						<Table.TextCell>{r.value}</Table.TextCell>
-					</Table.Row>
-				))}
-			</Table.Body>
-		</Table>
+		<div>
+			{error && <Alert intent="danger" title={error.toString()}/>}
+			<Table minWidth={350}>
+				<Table.Head>
+					<Table.SearchHeaderCell value={value} onChange={e => setValue(e)}/>
+					<Table.TextHeaderCell>URI</Table.TextHeaderCell>
+				</Table.Head>
+				<Table.Body maxHeight={200}>
+					{Object.entries(items).map(([k, v], idx) => (
+						<Table.Row key={idx} isSelectable onSelect={() => onOpen(v)} height={40}>
+							<Table.TextCell>
+								<Text marginLeft={8} size={300} fontWeight={500}>
+									{k}
+								</Text>
+							</Table.TextCell>
+							<Table.TextCell>{v.url}</Table.TextCell>
+						</Table.Row>
+					))}
+					{loading && <Pane display="flex" alignItems="center" justifyContent="center" height={64}>
+						<Spinner marginX="auto" marginY={32}/>
+					</Pane>}
+				</Table.Body>
+			</Table>
+		</div>
 	);
 };
 Preview.propTypes = {
