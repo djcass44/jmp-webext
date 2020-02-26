@@ -16,34 +16,38 @@
 
 import React, {useEffect, useState} from "react";
 import {Alert, Pane, Spinner, Table, Text} from "evergreen-ui";
-import PropTypes from "prop-types";
+import {Jump, Page} from "../config/types";
 
-const Preview = ({url}) => {
-	const [items, setItems] = useState({});
-	const [value, setValue] = useState("");
-	const [error, setError] = useState(null);
-	const [loading, setLoading] = useState(false);
+interface PreviewProps {
+	url: string | null;
+}
+
+const Preview: React.FC<PreviewProps> = ({url}) => {
+	const [items, setItems] = useState<Map<string, Jump>>(new Map());
+	const [value, setValue] = useState<string>("");
+	const [error, setError] = useState<any | null>(null);
+	const [loading, setLoading] = useState<boolean>(false);
 
 	useEffect(() => {
 		if(url != null)
 			getAll(value);
 	}, [value, url]);
 
-	const getAll = (query) => {
+	const getAll = (query: string) => {
 		setLoading(true);
 		fetch(`${url}/api/v2/jump?query=${query}`).then(r => {
 			if (!r.ok)
-				throw new Error(r.status || "An error occurred");
+				throw new Error(r.statusText || "An error occurred");
 			return r.json();
-		}).then(data => {
-			const temp = {};
+		}).then((data: Page<Jump>) => {
+			const temp = new Map();
 			// convert the pages into usable data
-			data.content.forEach(i => {
-				temp[i.name] = {
-					url: i.location,
+			data.content.forEach((i: Jump) => {
+				temp.set(i.name, {
+					location: i.location,
 					id: i.id,
 					name: i.name
-				};
+				});
 			});
 			setItems(temp);
 			// clear any existing error
@@ -56,12 +60,12 @@ const Preview = ({url}) => {
 		});
 	};
 
-	const onOpen = (target) => {
+	const onOpen = (target: Jump) => {
 		// open a new tab
 		browser.tabs.create({
 			url: `${url}/jmp?id=${target.id}&query=${target.name}`,
 			active: true
-		}).catch(err => console.error(err));
+		}).catch((err: any) => console.error(err));
 	};
 
 	return (
@@ -73,14 +77,14 @@ const Preview = ({url}) => {
 					<Table.TextHeaderCell>URI</Table.TextHeaderCell>
 				</Table.Head>
 				<Table.Body maxHeight={200}>
-					{Object.entries(items).map(([k, v], idx) => (
+					{Array.from(items.entries()).map(([k, v], idx) => (
 						<Table.Row key={idx} isSelectable onSelect={() => onOpen(v)} height={40}>
 							<Table.TextCell>
 								<Text marginLeft={8} size={300} fontWeight={500}>
 									{k}
 								</Text>
 							</Table.TextCell>
-							<Table.TextCell>{v.url}</Table.TextCell>
+							<Table.TextCell>{v.location}</Table.TextCell>
 						</Table.Row>
 					))}
 					{loading && <Pane display="flex" alignItems="center" justifyContent="center" height={64}>
@@ -90,11 +94,5 @@ const Preview = ({url}) => {
 			</Table>
 		</div>
 	);
-};
-Preview.propTypes = {
-	url: PropTypes.string
-};
-Preview.defaultProps = {
-	url: null
 };
 export default Preview;
