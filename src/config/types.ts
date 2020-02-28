@@ -11,3 +11,15 @@ export interface Page<T> {
 	totalElements: number; // total items
 	numberOfElements: number; // elements on page
 }
+
+export interface BuildInfo {
+	build: Build;
+}
+
+export interface Build {
+	artifact: string;
+	name: string;
+	time: number;
+	version: string;
+	group: string;
+}

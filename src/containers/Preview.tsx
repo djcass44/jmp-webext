@@ -17,6 +17,7 @@
 import React, {useEffect, useState} from "react";
 import {Alert, Pane, Spinner, Table, Text} from "evergreen-ui";
 import {Jump, Page} from "../config/types";
+import SupportsApi from "../actions/SupportsApi";
 
 interface PreviewProps {
 	url: string | null;
@@ -28,10 +29,22 @@ const Preview: React.FC<PreviewProps> = ({url}) => {
 	const [error, setError] = useState<any | null>(null);
 	const [loading, setLoading] = useState<boolean>(false);
 
+	const [supported, setSupported] = useState<boolean | null>(null);
+
 	useEffect(() => {
-		if(url != null)
+		if(url != null) {
+			SupportsApi(url).then(v => setSupported(v)).catch(err => {
+				setSupported(false);
+				setError(err);
+			});
+		}
+	}, [url]);
+
+	useEffect(() => {
+		// require the url and whether the api supports advanced features before proceeding
+		if(url != null && supported != null)
 			getAll(value);
-	}, [value, url]);
+	}, [value, url, supported]);
 
 	const getAll = (query: string) => {
 		setLoading(true);
@@ -71,27 +84,31 @@ const Preview: React.FC<PreviewProps> = ({url}) => {
 	return (
 		<div>
 			{error && <Alert intent="danger" title={error.toString()}/>}
-			<Table minWidth={350}>
-				<Table.Head>
-					<Table.SearchHeaderCell value={value} onChange={e => setValue(e)}/>
-					<Table.TextHeaderCell>URI</Table.TextHeaderCell>
-				</Table.Head>
-				<Table.Body maxHeight={200}>
-					{Array.from(items.entries()).map(([k, v], idx) => (
-						<Table.Row key={idx} isSelectable onSelect={() => onOpen(v)} height={40}>
-							<Table.TextCell>
-								<Text marginLeft={8} size={300} fontWeight={500}>
-									{k}
-								</Text>
-							</Table.TextCell>
-							<Table.TextCell>{v.location}</Table.TextCell>
-						</Table.Row>
-					))}
-					{loading && <Pane display="flex" alignItems="center" justifyContent="center" height={64}>
-						<Spinner marginX="auto" marginY={32}/>
-					</Pane>}
-				</Table.Body>
-			</Table>
+			{supported != null && !supported ?
+				<Alert intent="warning" title={<span>Unsupported API version<br/><small>Features may be limited</small></span>}/>
+				:
+				<Table minWidth={350}>
+					<Table.Head>
+						<Table.SearchHeaderCell value={value} onChange={e => setValue(e)}/>
+						<Table.TextHeaderCell>URI</Table.TextHeaderCell>
+					</Table.Head>
+					<Table.Body maxHeight={200}>
+						{Array.from(items.entries()).map(([k, v], idx) => (
+							<Table.Row key={idx} isSelectable onSelect={() => onOpen(v)} height={40}>
+								<Table.TextCell>
+									<Text marginLeft={8} size={300} fontWeight={500}>
+										{k}
+									</Text>
+								</Table.TextCell>
+								<Table.TextCell>{v.location}</Table.TextCell>
+							</Table.Row>
+						))}
+						{loading && <Pane display="flex" alignItems="center" justifyContent="center" height={64}>
+							<Spinner marginX="auto" marginY={32}/>
+						</Pane>}
+					</Table.Body>
+				</Table>
+			}
 		</div>
 	);
 };
