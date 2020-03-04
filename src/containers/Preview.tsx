@@ -103,8 +103,9 @@ const Preview: React.FC<PreviewProps> = ({url}) => {
 								<Table.TextCell>{v.location}</Table.TextCell>
 							</Table.Row>
 						))}
+						{items.size === 0 && <Alert intent="none" title="No Jumps found"/>}
 						{loading && <Pane display="flex" alignItems="center" justifyContent="center" height={64}>
-							<Spinner marginX="auto" marginY={32}/>
+							<Spinner marginX="auto" marginY={32} size={24}/>
 						</Pane>}
 					</Table.Body>
 				</Table>
