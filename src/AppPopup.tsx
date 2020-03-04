@@ -16,9 +16,10 @@
 
 import React, {useEffect, useState} from 'react';
 import './AppPopup.css';
-import {Button, Code, Pane, Tooltip} from "evergreen-ui";
+import {Code, IconButton, Pane, Popover, Position} from "evergreen-ui";
 import Preview from "./containers/Preview";
 import {DEFAULT_URL} from "./util/env";
+import OptionsMenu from "./containers/popup/OptionsMenu";
 
 export default () => {
 	const [url, setUrl] = useState<string | null>(null);
@@ -36,13 +37,6 @@ export default () => {
 		initUrl().then();
 	}, []);
 
-	const goHome = () => {
-		browser.tabs.create({
-			url,
-			active: true
-		}).catch((err: any) => console.error(err));
-	};
-
 	return (
 		<Pane>
 			<Pane padding={24}>
@@ -50,16 +44,19 @@ export default () => {
 					<img src="/favicon.png" width={29} height={29} alt="JMP favicon" style={{float: "left"}}/>
 					JMP
 				</div>
-				<Tooltip content="Go to extension settings to change url">
-					<Code>{url}</Code>
-				</Tooltip>
-				<Button
-					height={22}
-					marginLeft={8}
-					isLoading={url == null}
-					onClick={goHome}>
-					Open
-				</Button>
+				<div>
+				<Code>{url}</Code>
+				<Popover
+					position={Position.TOP_RIGHT}
+					content={<OptionsMenu url={url}/>}>
+					<IconButton
+						display={"right"}
+						marginLeft={8}
+						appearance="minimal"
+						height={22}
+						icon="cog"/>
+				</Popover>
+				</div>
 			</Pane>
 			<div>
 				<Preview url={url}/>
