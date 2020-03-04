@@ -1,4 +1,5 @@
 import {DEFAULT_URL} from "./util/env";
+import {getStoredData} from "./util/storage";
 
 let BASE_URL = DEFAULT_URL;
 
@@ -7,8 +8,8 @@ const getSourceUrl = query => `${BASE_URL}/jmp?query=${query}`;
 
 const initUrl = async () => {
 	// attempt to load the stored JMP url (or default to env)
-	const data = await browser.storage.sync.get('jmp');
-	return (data.jmp && data.jmp.url) || DEFAULT_URL;
+	const data = await getStoredData();
+	return (data && data.url) || DEFAULT_URL;
 };
 
 const createSuggestions = response => {

@@ -10,7 +10,8 @@
     "keyword": "jmp"
   },
   "optional_permissions": [
-    "<all_urls>"
+    "http://*/*",
+    "https://*/*"
   ],
   "__firefox__browser_specific_settings": {
     "gecko": {
