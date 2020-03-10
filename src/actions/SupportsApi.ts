@@ -15,6 +15,7 @@ export default (url: string): Promise<boolean> => {
 			return r.json();
 		}).then((data: BuildInfo) => {
 			const version = Number(data.build.version);
+			console.log(`Got API version: ${version}`);
 			// 0.5 is the spring boot version
 			resolve(version >= 0.5);
 		}).catch(err => {

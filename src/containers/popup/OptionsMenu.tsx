@@ -1,34 +1,32 @@
-import {Menu} from "evergreen-ui";
+import {Link, Menu} from "evergreen-ui";
 import React from "react";
 
 interface OptionsMenuProps {
 	url?: string | null;
 }
 
+const linkStyle = {
+	textDecoration: "none",
+	color: "#101f2d"
+};
+
 const OptionsMenu: React.FC<OptionsMenuProps> = ({url}) => {
 
-	const openTab = (target: string): void => {
-		browser.tabs.create({
-			url: target,
-			active: true
-		}).catch((err: any) => console.error(err));
-	};
-
-	const openPath = (path: string) => {
-		let settingsUrl;
+	const getPath = (path: string): string => {
+		let newUrl;
 		if(url && url.endsWith("/"))
-			settingsUrl = `${url}${path}`;
+			newUrl = `${url}${path}`;
 		else
-			settingsUrl = `${url}/${path}`;
-		openTab(settingsUrl);
+			newUrl = `${url}/${path}`;
+		return newUrl;
 	};
 
 	return (
 		<Menu>
 			<Menu.Group title="JMP Actions">
-				<Menu.Item onSelect={() => openPath("")}>JMP</Menu.Item>
-				<Menu.Item onSelect={() => openPath("settings")}>JMP Options</Menu.Item>
-				<Menu.Item onSelect={() => openPath("help")}>JMP Help</Menu.Item>
+				<Menu.Item is={Link} style={linkStyle} href={url}>JMP</Menu.Item>
+				<Menu.Item is={Link} style={linkStyle} href={getPath("settings")}>JMP Options</Menu.Item>
+				<Menu.Item is={Link} style={linkStyle} href={getPath("help")}>JMP Help</Menu.Item>
 			</Menu.Group>
 			<Menu.Divider/>
 			<Menu.Group title="Extension Actions">
