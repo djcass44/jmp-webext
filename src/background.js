@@ -12,12 +12,12 @@ const initUrl = async () => {
 	return (data && data.url) || DEFAULT_URL;
 };
 
-const createSuggestions = response => {
+const createSuggestions = (query, response) => {
 	return new Promise(resolve => {
 		const suggestions = [];
 		const suggestionsOnEmptyResults = [{
 			content: BASE_URL,
-			description: "Nothing found"
+			description: '<dim>Nothing found</dim>'
 		}];
 		response.json().then(json => {
 			if (!Array.isArray(json))
@@ -25,7 +25,7 @@ const createSuggestions = response => {
 			json.forEach(i => {
 				suggestions.push({
 					content: getSourceUrl(i),
-					description: i
+					description: '<dim>JMP</dim> - ' + getMatchedQuery(query, i.split("&")[0])
 				});
 			});
 			return resolve(suggestions);
@@ -33,24 +33,39 @@ const createSuggestions = response => {
 	});
 };
 
+const getMatchedQuery = (query, text) => {
+	if(!text.includes(query))
+		return text;
+
+	const matchStart = text.indexOf(query);
+	return text.substring(0, matchStart) + "<match>" + text.substr(matchStart, query.length) + "</match>" + text.substring(matchStart + query.length, text.length);
+};
+
 /**
  * Attempt to find an existing bookmark
  */
 const onAdd = () => {
 	const {omnibox} = browser;
-	omnibox.setDefaultSuggestion({
-		description: "Search JMP"
+	omnibox.onInputStarted.addListener(function() {
+		updateDefaultSuggestion('');
+	});
+
+	omnibox.onInputCancelled.addListener(function() {
+		resetDefaultSuggestion();
 	});
 	omnibox.onInputChanged.addListener((text, addSuggestions) => {
+		updateDefaultSuggestion(text);
+		if (!text)
+			return;
 		// reload the url in case anything has changed
 		initUrl().then(r => {
 			BASE_URL = r;
-			const init = {method: "GET"};
 			const url = getSearchUrl(text);
-			const request = new Request(url, init);
-			console.log(`requesting: ${url}`);
+			const request = new Request(url, {method: "GET"});
 
-			fetch(request).then(createSuggestions).then(addSuggestions);
+			fetch(request).then(res => {
+				createSuggestions(text, res).then(addSuggestions);
+			});
 		});
 	});
 	omnibox.onInputEntered.addListener((text, disposition) => {
@@ -71,6 +86,21 @@ const onAdd = () => {
 			default:
 				break;
 		}
+	});
+};
+
+const resetDefaultSuggestion = () => {
+	browser.omnibox.setDefaultSuggestion({
+		description: '<dim>JMP</dim> - Search something'
+	});
+};
+
+resetDefaultSuggestion();
+
+const updateDefaultSuggestion = (text) => {
+	const description = '<match>' + text + '</match>';
+	browser.omnibox.setDefaultSuggestion({
+		description
 	});
 };
 
