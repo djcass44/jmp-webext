@@ -1,6 +1,6 @@
 {
   "name": "JMP",
-  "version": "0.3",
+  "version": "0.3.1",
   "description": "JMP web helper",
   "permissions": [
     "storage",
